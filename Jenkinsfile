@@ -8,11 +8,11 @@ pipeline {
                 script {
                     def dockerHome = tool "docker"
                     env.PATH = "${dockerHome}/bin:${env.PATH}"
+                    
                 }
             }
         }
 
-       
         stage("Git"){
             steps{
                script {
