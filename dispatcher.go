@@ -29,8 +29,10 @@ type forwarder struct {
 func (f *forwarder) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	addrs, err := net.LookupHost(f.host)
 	if err != nil {
+		
 		log.Println("Error", err)
 		http.Error(w, err.Error(), 500)
+		
 		return
 	}
 
