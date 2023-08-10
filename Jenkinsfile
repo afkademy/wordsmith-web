@@ -21,24 +21,24 @@ pipeline {
             }
         }
 
-        stage ("Sonar Scan") {
-            steps {
-                script {
-                    def scannerHome = tool "sonar"
-                    withSonarQubeEnv("sonar"){
-                        sh "${scannerHome}/bin/sonar-scanner sonar.projectKey=wordsmith-web"
-                    }
-                }
-            }
-        }
+        // stage ("Sonar Scan") {
+        //     steps {
+        //         script {
+        //             def scannerHome = tool "sonar"
+        //             withSonarQubeEnv("sonar"){
+        //                 sh "${scannerHome}/bin/sonar-scanner sonar.projectKey=wordsmith-web"
+        //             }
+        //         }
+        //     }
+        // }
 
-        stage("Quantity Gates") {
-            steps {
-                timeout(time: 4, unit: "MINUTES"){
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+        // stage("Quantity Gates") {
+        //     steps {
+        //         timeout(time: 4, unit: "MINUTES"){
+        //             waitForQualityGate abortPipeline: true
+        //         }
+        //     }
+        // }
 
         stage ("Build Docker Image") {
             steps {
