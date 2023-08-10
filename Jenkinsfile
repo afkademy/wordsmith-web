@@ -22,12 +22,10 @@ pipeline {
         }
 
         stage ("Sonar Scan") {
-            tools {
-                maven "maven-3.9"
-            }
             steps {
+                def scannerHome = tool "sonar"
                 withSonarQubeEnv("sonar"){
-                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar -Dsonar.projectKey=worthsmith-web'
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
