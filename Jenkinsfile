@@ -44,7 +44,7 @@ pipeline {
             steps {
                 script {
                     def tag = getDockerTag()
-                    sh "docker build -t 345331916214.dkr.ecr.us-east-2.amazonaws.com/worthsmith-web:${tag} ."
+                    sh "docker build -t 345331916214.dkr.ecr.us-east-2.amazonaws.com/wordsmith-web:${tag} ."
                 }
             }
         }
@@ -55,7 +55,7 @@ pipeline {
                     def tag = getDockerTag()
                     withAWS([credentials: 'aws-creds', region: 'us-east-2']) {
                         sh "aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 345331916214.dkr.ecr.us-east-2.amazonaws.com"
-                        sh "docker push 345331916214.dkr.ecr.us-east-2.amazonaws.com/worthsmith-web:${tag}"
+                        sh "docker push 345331916214.dkr.ecr.us-east-2.amazonaws.com/wordsmith-web:${tag}"
                     }
                 }
             }
